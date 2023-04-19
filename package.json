@@ -1,12 +1,9 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "client": "npm run dev --prefix client",
-    "devClient": "concurrently -k \"npm run server\" \"npm run client\""
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",

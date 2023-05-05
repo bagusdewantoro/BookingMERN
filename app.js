@@ -33,7 +33,7 @@ const whitelist = [
 	'https://bagusbooking.netlify.app',
 ];
 
-app.options('/login', cors());
+app.options('*', cors());
 
 const corsOptions = {
   credentials: true,
@@ -98,7 +98,7 @@ app.post('/register', async (req, res) => {
 
 
 // LOGIN
-app.post('/login', async (req, res) => {
+app.post('/login', cors(corsOptions), async (req, res) => {
 	mongoose.connect(process.env.MONGO_URL).then(() => console.log('connected to DB')) // access mongodb cloud from everywhere
 	const {email, password} = req.body
 	const userDoc = await User.findOne({email})

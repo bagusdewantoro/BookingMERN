@@ -105,13 +105,16 @@ app.post('/login', cors(corsOptions), async (req, res) => {
 
 	if (userDoc) {
 		const passOK = bcrypt.compareSync(password, userDoc.password)
+                cors(corsOptions)
 		
 		if (passOK) {
+                        cors(corsOptions)
 			jwt.sign(
 				{email: userDoc.email, id:userDoc._id}, 
 				jwtSecret, 
 				{}, 
 				(err, token) => {
+                                        cors(corsOptions)
 					if (err) throw err;
 					res.cookie('token', token).json(userDoc)
 				}
@@ -124,11 +127,12 @@ app.post('/login', cors(corsOptions), async (req, res) => {
 
 
 // PROFILE
-app.get('/profile', (req, res) => {
+app.get('/profile', cors(corsOptions), (req, res) => {
 	mongoose.connect(process.env.MONGO_URL).then(() => console.log('connected to DB')) // access mongodb cloud from everywhere
 	const {token} = req.cookies
 	if (token) {
 		jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+                        cors(corsOptions)
 			if (err) throw err
 			
 			// Grab user name from the ID from cookie we send:

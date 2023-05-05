@@ -33,7 +33,7 @@ const whitelist = [
 	'https://bagusbooking.netlify.app',
 ];
 
-app.options('*', cors());
+app.options('/login', cors());
 
 const corsOptions = {
   credentials: true,

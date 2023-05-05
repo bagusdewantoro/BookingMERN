@@ -29,9 +29,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 
 // cross origin
 const whitelist = [
-	'http://localhost:5173/', 
+	'http://localhost:5173', 
 	'https://bagusbooking.netlify.app',
-	'https://booking-api-duhj.onrender.com/',
 ];
 
 app.options('*', cors());
